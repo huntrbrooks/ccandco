@@ -35,7 +35,7 @@ export default function ServicesPage() {
               <h2 className="mb-6 font-serif text-4xl font-semibold text-charcoal">
                 {category}
               </h2>
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-6 md:grid-cols-2">
                 {services
                   .filter((service) => service.category === category)
                   .map((service) => (

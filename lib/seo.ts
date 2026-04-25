@@ -66,7 +66,7 @@ export function createBeautySalonJsonLd() {
   const businessId = new URL("/#local-business", siteConfig.url).toString();
   const websiteId = new URL("/#website", siteConfig.url).toString();
   const imageUrl = new URL("/og-image.svg", siteConfig.url).toString();
-  const logoUrl = new URL("/images/logo-reference.jpg", siteConfig.url).toString();
+  const logoUrl = new URL("/images/logo-reference.svg", siteConfig.url).toString();
 
   return {
     "@context": "https://schema.org",

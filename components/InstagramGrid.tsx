@@ -9,25 +9,25 @@ const instagramHighlights: InstagramHighlightCard[] = [
   {
     id: "studio",
     title: "Studio",
-    src: "/images/logo-reference.jpg",
+    src: "/images/logo-reference.svg",
     alt: "CC & CO. aesthetics logo",
   },
   {
     id: "prices",
     title: "Prices",
-    src: "/images/prices-circle-reference.jpg",
+    src: "/images/prices-circle-reference.svg",
     alt: "CC & CO. price highlight graphic",
   },
   {
     id: "aftercare",
     title: "Aftercare",
-    src: "/images/aftercare-circle-reference.jpg",
+    src: "/images/aftercare-circle-reference.svg",
     alt: "CC & CO. aftercare highlight graphic",
   },
   {
     id: "booking",
     title: "Booking",
-    src: "/images/booking-circle-reference.jpg",
+    src: "/images/booking-circle-reference.svg",
     alt: "CC & CO. booking highlight graphic",
   },
 ];

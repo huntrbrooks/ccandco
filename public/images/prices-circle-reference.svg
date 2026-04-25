@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 1040" role="img" aria-labelledby="title desc">
+  <title id="title">Prices highlight graphic</title>
+  <desc id="desc">The word Prices curved above a fine ivory circle on a charcoal background.</desc>
+  <defs>
+    <path id="circleText" d="M 252 452 A 168 168 0 0 1 588 452"/>
+    <radialGradient id="surface" cx="45%" cy="35%" r="85%">
+      <stop offset="0%" stop-color="#3d362f"/>
+      <stop offset="58%" stop-color="#29231f"/>
+      <stop offset="100%" stop-color="#1b1715"/>
+    </radialGradient>
+  </defs>
+  <rect width="840" height="1040" rx="58" fill="url(#surface)"/>
+  <circle cx="420" cy="452" r="168" fill="none" stroke="#f4eee8" stroke-width="4"/>
+  <text fill="#f8f1ea" font-family="Inter, Arial, sans-serif" font-size="44" font-weight="600" letter-spacing="24">
+    <textPath href="#circleText" startOffset="50%" text-anchor="middle">PRICES</textPath>
+  </text>
+</svg>

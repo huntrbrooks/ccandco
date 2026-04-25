@@ -34,7 +34,7 @@ export function Hero() {
               muted
               loop
               playsInline
-              poster="/images/cc-and-co-hero-video-poster.jpg"
+              poster="/images/Lashes 1.png"
               aria-label="CC & CO. premium aesthetics brand video"
             >
               <source

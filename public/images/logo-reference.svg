@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 1040" role="img" aria-labelledby="title desc">
+  <title id="title">CC &amp; CO. aesthetics studio logo</title>
+  <desc id="desc">A refined CC &amp; CO. aesthetics logo on a dark charcoal studio card.</desc>
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="42%" r="70%">
+      <stop offset="0%" stop-color="#5b5149"/>
+      <stop offset="52%" stop-color="#241f1c"/>
+      <stop offset="100%" stop-color="#161311"/>
+    </radialGradient>
+    <linearGradient id="sheen" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f6eadf" stop-opacity="0.14"/>
+      <stop offset="46%" stop-color="#f6eadf" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#c7ad99" stop-opacity="0.18"/>
+    </linearGradient>
+  </defs>
+  <rect width="840" height="1040" rx="58" fill="url(#glow)"/>
+  <rect width="840" height="1040" rx="58" fill="url(#sheen)"/>
+  <rect x="86" y="360" width="668" height="218" fill="none" stroke="#d8cabe" stroke-width="4"/>
+  <line x1="112" y1="523" x2="360" y2="523" stroke="#d8cabe" stroke-width="4"/>
+  <text x="420" y="462" text-anchor="middle" fill="#fbf7f1" font-family="Cormorant Garamond, Georgia, serif" font-size="70" letter-spacing="3">
+    CC &amp; CO.
+  </text>
+  <text x="716" y="524" text-anchor="end" fill="#fbf7f1" font-family="Cormorant Garamond, Georgia, serif" font-size="31" letter-spacing="1">
+    aesthetics
+  </text>
+</svg>
