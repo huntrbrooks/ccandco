@@ -23,6 +23,7 @@ export default function ContactPage() {
               eyebrow="Contact Us"
               title="We would love to hear from you."
               description="Send a message for service questions, appointment help or studio enquiries."
+              as="h1"
             />
             <Card className="mt-8 space-y-4 p-6 text-sm leading-7 text-muted-foreground">
               <p>

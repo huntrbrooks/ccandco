@@ -5,7 +5,7 @@ import { CTASection } from "@/components/CTASection";
 import { ButtonLink } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { getServiceBySlug, services } from "@/lib/services";
-import { createBreadcrumbJsonLd, createMetadata } from "@/lib/seo";
+import { createMetadata, createServicePageJsonLd } from "@/lib/seo";
 
 type ServicePageProps = {
   params: Promise<{
@@ -33,7 +33,6 @@ export async function generateMetadata({
     title: `${service.name} | CC & CO. Elwood`,
     description: `${service.description} Book ${service.name.toLowerCase()} at CC & CO. in Elwood, Melbourne.`,
     path: `/services/${service.slug}`,
-    image: service.image,
   });
 }
 
@@ -45,18 +44,14 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
     notFound();
   }
 
-  const breadcrumb = createBreadcrumbJsonLd([
-    { name: "Home", path: "/" },
-    { name: "Services", path: "/services" },
-    { name: service.name, path: `/services/${service.slug}` },
-  ]);
+  const servicePageJsonLd = createServicePageJsonLd(service);
 
   return (
     <>
       <script
         type="application/ld+json"
         suppressHydrationWarning
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(servicePageJsonLd) }}
       />
       <section className="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
@@ -98,7 +93,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
               alt={service.imageAlt}
               width={900}
               height={1080}
-              className="aspect-[4/5] w-full object-cover"
+              className="aspect-4/5 w-full object-cover"
               priority
             />
           </div>

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { FieldError, Input, Label, Select, Textarea } from "@/components/ui/form-controls";
+import { trackTradeEnquirySubmitted } from "@/lib/tracking";
 import { tradeSchema, type TradeInput } from "@/lib/validations";
 
 const enquiryTypes = [
@@ -49,6 +50,11 @@ export function TradeForm() {
       setMessage(result.message || "Something went wrong. Please try again.");
       return;
     }
+
+    trackTradeEnquirySubmitted({
+      enquiry_type: values.enquiryType || undefined,
+      source: values.source ?? "Trade page",
+    });
 
     setStatus("success");
     setMessage(result.message || "Thank you. We will be in touch shortly.");

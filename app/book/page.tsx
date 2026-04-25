@@ -32,6 +32,7 @@ export default async function BookPage({ searchParams }: BookPageProps) {
               eyebrow="Book Now"
               title="Request your appointment."
               description="Tell us your preferred service and timing. We will confirm availability and guide you through the next steps."
+              as="h1"
             />
             {siteConfig.bookingUrl ? (
               <Card className="mt-8 p-6">

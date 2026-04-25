@@ -23,13 +23,14 @@ export default function ServicesPage() {
             eyebrow="Services"
             title="Premium beauty treatments, tailored with care."
             description="Every service includes a personal approach, clear treatment guidance and aftercare designed to protect your result."
+            as="h1"
           />
         </div>
       </section>
 
       <section className="px-4 pb-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl space-y-14">
-          {categories.map((category) => (
+          {categories.map((category, categoryIndex) => (
             <div key={category}>
               <h2 className="mb-6 font-serif text-4xl font-semibold text-charcoal">
                 {category}
@@ -38,7 +39,11 @@ export default function ServicesPage() {
                 {services
                   .filter((service) => service.category === category)
                   .map((service) => (
-                    <ServiceCard key={service.slug} service={service} />
+                    <ServiceCard
+                      key={service.slug}
+                      service={service}
+                      priority={categoryIndex === 0}
+                    />
                   ))}
               </div>
             </div>

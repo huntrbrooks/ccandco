@@ -1,21 +1,32 @@
-import Image from "next/image";
 import { ButtonLink } from "@/components/ui/button";
+import {
+  InstagramHighlights,
+  type InstagramHighlightCard,
+} from "@/components/InstagramHighlights";
 import { getInstagramUrl, siteConfig } from "@/lib/site";
 
-const instagramImages = [
+const instagramHighlights: InstagramHighlightCard[] = [
   {
+    id: "studio",
+    title: "Studio",
     src: "/images/logo-reference.jpg",
     alt: "CC & CO. aesthetics logo",
   },
   {
+    id: "prices",
+    title: "Prices",
     src: "/images/prices-circle-reference.jpg",
     alt: "CC & CO. price highlight graphic",
   },
   {
+    id: "aftercare",
+    title: "Aftercare",
     src: "/images/aftercare-circle-reference.jpg",
     alt: "CC & CO. aftercare highlight graphic",
   },
   {
+    id: "booking",
+    title: "Booking",
     src: "/images/booking-circle-reference.jpg",
     alt: "CC & CO. booking highlight graphic",
   },
@@ -35,8 +46,8 @@ export function InstagramGrid() {
             </h2>
             <p className="mt-5 text-sm leading-7 text-cream/75">
               Connect with @{siteConfig.instagramHandle} for treatment updates,
-              aftercare notes and real client results. A live feed can be
-              connected later with an Instagram API token.
+              aftercare notes and real client results. Tap a highlight to play
+              the latest reel when the studio feed is connected.
             </p>
             <ButtonLink
               href={getInstagramUrl()}
@@ -47,22 +58,11 @@ export function InstagramGrid() {
               Follow Us On Instagram
             </ButtonLink>
           </div>
-          <div className="grid grid-cols-2 gap-4">
-            {instagramImages.map((image) => (
-              <div
-                key={image.src}
-                className="overflow-hidden rounded-[1.5rem] border border-cream/15"
-              >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  width={420}
-                  height={520}
-                  className="aspect-[4/5] w-full object-cover"
-                />
-              </div>
-            ))}
-          </div>
+          <InstagramHighlights
+            cards={instagramHighlights}
+            handle={siteConfig.instagramHandle}
+            instagramUrl={getInstagramUrl()}
+          />
         </div>
       </div>
     </section>

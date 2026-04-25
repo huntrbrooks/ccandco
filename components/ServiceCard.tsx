@@ -7,9 +7,14 @@ import type { Service } from "@/lib/services";
 type ServiceCardProps = {
   service: Service;
   compact?: boolean;
+  priority?: boolean;
 };
 
-export function ServiceCard({ service, compact = false }: ServiceCardProps) {
+export function ServiceCard({
+  service,
+  compact = false,
+  priority = false,
+}: ServiceCardProps) {
   return (
     <Card className="group flex h-full flex-col overflow-hidden">
       <div className="relative overflow-hidden">
@@ -18,7 +23,9 @@ export function ServiceCard({ service, compact = false }: ServiceCardProps) {
           alt={service.imageAlt}
           width={760}
           height={620}
-          className="aspect-[4/3] w-full object-cover transition duration-700 group-hover:scale-105"
+          priority={priority}
+          sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+          className="aspect-4/3 w-full object-cover transition duration-700 group-hover:scale-105"
         />
         <div className="absolute left-4 top-4 rounded-full bg-ivory/90 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] text-primary backdrop-blur">
           {service.category}

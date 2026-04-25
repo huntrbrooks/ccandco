@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { ButtonLink } from "@/components/ui/button";
 import { siteConfig } from "@/lib/site";
 
@@ -29,15 +28,21 @@ export function Hero() {
         <div className="relative">
           <div className="absolute -left-6 top-10 h-40 w-40 rounded-full bg-blush/70 blur-3xl" />
           <div className="relative overflow-hidden rounded-[2.5rem] border border-white/70 bg-card shadow-[0_30px_90px_rgba(94,70,56,0.16)]">
-            <Image
-              src="/images/logo-reference.jpg"
-              alt="CC & CO. premium aesthetics logo on a dark editorial background"
-              width={900}
-              height={900}
-              priority
-              className="aspect-[4/5] w-full object-cover"
-            />
-            <div className="absolute inset-x-5 bottom-5 rounded-[1.5rem] border border-white/45 bg-ivory/88 p-5 shadow-xl backdrop-blur">
+            <video
+              className="aspect-4/5 w-full object-cover"
+              autoPlay
+              muted
+              loop
+              playsInline
+              poster="/images/cc-and-co-hero-video-poster.jpg"
+              aria-label="CC & CO. premium aesthetics brand video"
+            >
+              <source
+                src="/videos/cc-and-co-hero-video.mp4"
+                type="video/mp4"
+              />
+            </video>
+            <div className="absolute inset-x-5 bottom-5 rounded-3xl border border-white/45 bg-ivory/88 p-5 shadow-xl backdrop-blur">
               <p className="text-xs font-bold uppercase tracking-[0.25em] text-taupe">
                 Boutique Elwood Studio
               </p>

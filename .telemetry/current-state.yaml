@@ -1,0 +1,70 @@
+meta:
+  generated_at: "2026-04-26"
+  source: "codebase_scan"
+  destinations:
+    - posthog
+  framework: "nextjs-app-router"
+  language: "typescript"
+
+sdk_inventory:
+  posthog-js:
+    installed: true
+    package_version: "^1.372.1"
+    initialized_in:
+      - "instrumentation-client.ts"
+    api_host: "/ingest"
+    ui_host: "https://us.posthog.com"
+    defaults: "2026-01-30"
+    capture_exceptions: true
+    debug_in_development: true
+
+proxying:
+  posthog_ingest:
+    configured: true
+    file: "next.config.ts"
+    rewrites:
+      - source: "/ingest/static/:path*"
+        destination: "https://us-assets.i.posthog.com/static/:path*"
+      - source: "/ingest/:path*"
+        destination: "https://us.i.posthog.com/:path*"
+
+current_events:
+  automatic:
+    - name: "$pageview"
+      source: "posthog-js default behavior"
+      status: "inferred"
+    - name: "$pageleave"
+      source: "posthog-js default behavior"
+      status: "inferred"
+    - name: "$autocapture"
+      source: "posthog-js default behavior"
+      status: "inferred"
+  custom: []
+
+identity:
+  identify_calls_found: []
+  reset_calls_found: []
+  authenticated_users: false
+  note: "The site is anonymous-only. Do not identify visitors unless a durable customer ID is introduced."
+
+groups:
+  group_calls_found: []
+  group_hierarchy: "none"
+
+event_call_sites_scanned:
+  - "components/BookingForm.tsx"
+  - "components/ContactForm.tsx"
+  - "components/TradeForm.tsx"
+  - "components/InstagramHighlights.tsx"
+  - "app/services/[slug]/page.tsx"
+  - "app/book/page.tsx"
+  - "app/api/booking/route.ts"
+  - "app/api/contact/route.ts"
+  - "app/api/trade/route.ts"
+
+gaps:
+  - "No typed event registry exists."
+  - "No custom conversion events exist for booking, contact, or trade form success."
+  - "No explicit event exists for Instagram highlight engagement."
+  - "No source-of-truth tracking plan existed before this baseline."
+  - "Form event design must avoid names, emails, phone numbers, notes, and any free-text message content."

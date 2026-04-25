@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">CC &amp; CO. Aesthetics</title>
+  <desc id="desc">CC &amp; CO. boutique beauty studio in Elwood, Melbourne.</desc>
+  <rect width="1200" height="630" fill="#f6efe8"/>
+  <circle cx="1000" cy="120" r="220" fill="#ead8cd"/>
+  <circle cx="170" cy="520" r="180" fill="#d5b79f"/>
+  <rect x="78" y="76" width="1044" height="478" rx="42" fill="#fffaf5" stroke="#d8bdab" stroke-width="3"/>
+  <text x="600" y="240" fill="#4f4038" font-family="Georgia, 'Times New Roman', serif" font-size="94" font-weight="700" text-anchor="middle" letter-spacing="7">
+    CC &amp; CO.
+  </text>
+  <text x="600" y="315" fill="#7a6256" font-family="Arial, Helvetica, sans-serif" font-size="31" font-weight="700" text-anchor="middle" letter-spacing="8">
+    AESTHETICS
+  </text>
+  <line x1="342" y1="360" x2="858" y2="360" stroke="#d8bdab" stroke-width="3"/>
+  <text x="600" y="424" fill="#4f4038" font-family="Arial, Helvetica, sans-serif" font-size="32" text-anchor="middle">
+    Boutique beauty studio in Elwood, Melbourne
+  </text>
+  <text x="600" y="474" fill="#7a6256" font-family="Arial, Helvetica, sans-serif" font-size="26" text-anchor="middle">
+    Lashes, teeth whitening, brows and tailored beauty services
+  </text>
+</svg>

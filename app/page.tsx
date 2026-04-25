@@ -24,11 +24,11 @@ export default function HomePage() {
           <FadeIn>
             <div className="overflow-hidden rounded-[2.5rem] border border-white/70 shadow-2xl">
               <Image
-                src="/images/price-list-reference.jpg"
-                alt="CC & CO. premium price list and beauty studio brand style"
+                src="/images/cc-and-co-lash-treatment-editorial.jpg"
+                alt="CC & CO. lash treatment in a calm boutique beauty studio"
                 width={720}
                 height={960}
-                className="aspect-[4/5] w-full object-cover"
+                className="aspect-4/5 w-full object-cover"
               />
             </div>
           </FadeIn>
@@ -72,20 +72,24 @@ export default function HomePage() {
 
       <section className="px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="Why clients love CC & CO."
-            title="An elevated studio experience without the fuss."
-            description="Every detail is designed to feel calm, considered and confidence-building."
-            align="center"
-          />
+          <FadeIn variant="subtle">
+            <SectionHeading
+              eyebrow="Why clients love CC & CO."
+              title="An elevated studio experience without the fuss."
+              description="Every detail is designed to feel calm, considered and confidence-building."
+              align="center"
+            />
+          </FadeIn>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {siteConfig.values.map((value) => (
-              <Card key={value} className="p-6">
-                <CheckCircle2 className="h-6 w-6 text-primary" aria-hidden="true" />
-                <h3 className="mt-4 font-serif text-2xl text-charcoal">
-                  {value}
-                </h3>
-              </Card>
+            {siteConfig.values.map((value, index) => (
+              <FadeIn key={value} delay={index * 0.05} variant="subtle">
+                <Card className="p-6">
+                  <CheckCircle2 className="h-6 w-6 text-primary" aria-hidden="true" />
+                  <h3 className="mt-4 font-serif text-2xl text-charcoal">
+                    {value}
+                  </h3>
+                </Card>
+              </FadeIn>
             ))}
           </div>
         </div>
@@ -93,24 +97,41 @@ export default function HomePage() {
 
       <section className="px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl rounded-[2.5rem] bg-cream p-6 sm:p-10">
-          <SectionHeading
-            eyebrow="Signature experience"
-            title="Precision, calm and care from start to finish."
-            description="The CC & CO. service process keeps your appointment clear, relaxing and tailored."
-          />
+          <div className="grid gap-8 lg:grid-cols-[1fr_0.85fr] lg:items-center">
+            <FadeIn variant="subtle">
+              <SectionHeading
+                eyebrow="Signature experience"
+                title="Precision, calm and care from start to finish."
+                description="The CC & CO. service process keeps your appointment clear, relaxing and tailored."
+              />
+            </FadeIn>
+            <FadeIn delay={0.08} variant="subtle">
+              <div className="overflow-hidden rounded-4xl border border-white/70 bg-card shadow-xl">
+                <Image
+                  src="/images/cc-and-co-studio-experience.jpg"
+                  alt="A relaxed CC & CO. boutique studio treatment setting"
+                  width={1024}
+                  height={576}
+                  className="aspect-video w-full object-cover"
+                />
+              </div>
+            </FadeIn>
+          </div>
           <div className="mt-10 grid gap-5 md:grid-cols-3">
             {siteConfig.process.map((step, index) => (
-              <Card key={step.title} className="p-6">
-                <span className="font-serif text-5xl text-champagne">
-                  0{index + 1}
-                </span>
-                <h3 className="mt-5 font-serif text-3xl text-charcoal">
-                  {step.title}
-                </h3>
-                <p className="mt-3 text-sm leading-7 text-muted-foreground">
-                  {step.description}
-                </p>
-              </Card>
+              <FadeIn key={step.title} delay={index * 0.06} variant="subtle">
+                <Card className="p-6">
+                  <span className="font-serif text-5xl text-champagne">
+                    0{index + 1}
+                  </span>
+                  <h3 className="mt-5 font-serif text-3xl text-charcoal">
+                    {step.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-7 text-muted-foreground">
+                    {step.description}
+                  </p>
+                </Card>
+              </FadeIn>
             ))}
           </div>
         </div>
@@ -118,7 +139,10 @@ export default function HomePage() {
 
       <section className="px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+          <FadeIn
+            className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end"
+            variant="subtle"
+          >
             <SectionHeading
               eyebrow="Testimonials"
               title="Kind words from confident clients."
@@ -127,10 +151,12 @@ export default function HomePage() {
             <ButtonLink href="/reviews" variant="outline">
               Read More Reviews
             </ButtonLink>
-          </div>
+          </FadeIn>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {testimonials.slice(0, 3).map((testimonial) => (
-              <TestimonialCard key={testimonial.name} testimonial={testimonial} />
+            {testimonials.slice(0, 3).map((testimonial, index) => (
+              <FadeIn key={testimonial.name} delay={index * 0.06} variant="subtle">
+                <TestimonialCard testimonial={testimonial} />
+              </FadeIn>
             ))}
           </div>
         </div>

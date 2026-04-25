@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { FieldError, Input, Label, Textarea } from "@/components/ui/form-controls";
+import { trackContactFormSubmitted } from "@/lib/tracking";
 import { contactSchema, type ContactInput } from "@/lib/validations";
 
 export function ContactForm() {
@@ -40,6 +41,10 @@ export function ContactForm() {
       setMessage(result.message || "Something went wrong. Please try again.");
       return;
     }
+
+    trackContactFormSubmitted({
+      source: values.source ?? "Contact page",
+    });
 
     setStatus("success");
     setMessage(result.message || "Thank you. We will be in touch shortly.");

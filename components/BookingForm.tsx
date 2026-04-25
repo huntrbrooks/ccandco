@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { FieldError, Input, Label, Select, Textarea } from "@/components/ui/form-controls";
 import { services } from "@/lib/services";
+import { trackBookingRequestSubmitted } from "@/lib/tracking";
 import { bookingSchema, type BookingInput } from "@/lib/validations";
 
 type BookingFormProps = {
@@ -48,6 +49,14 @@ export function BookingForm({ defaultServiceSlug }: BookingFormProps) {
       setMessage(result.message || "Something went wrong. Please try again.");
       return;
     }
+
+    trackBookingRequestSubmitted({
+      preferred_service_slug: values.preferredService || undefined,
+      client_type: values.clientType,
+      has_preferred_date: Boolean(values.preferredDate),
+      has_preferred_time: Boolean(values.preferredTime),
+      source: values.source ?? "Book Now page",
+    });
 
     setStatus("success");
     setMessage(result.message || "Thank you. We will be in touch shortly.");

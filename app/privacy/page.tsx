@@ -19,6 +19,7 @@ export default function PrivacyPage() {
           eyebrow="Legal"
           title="Privacy Policy"
           description="This policy explains how CC & CO. collects and handles information submitted through this website."
+          as="h1"
         />
         <Card className="mt-10 space-y-8 p-6 text-sm leading-7 text-muted-foreground sm:p-10">
           <section>

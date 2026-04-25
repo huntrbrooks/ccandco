@@ -28,24 +28,30 @@ Open `http://localhost:3000`.
 Copy `.env.example` to `.env.local` and fill in the values you have.
 
 ```bash
-RESEND_API_KEY=
-CONTACT_TO_EMAIL=
-BOOKING_TO_EMAIL=
-TRADE_TO_EMAIL=
-NEXT_PUBLIC_SITE_URL=
+RESEND_API_KEY=*** (configured on Vercel + .env.local)
+RESEND_FROM_EMAIL="CC & CO. Website <cassandra@ccandco.beauty>"
+CONTACT_TO_EMAIL=cassandra@ccandco.beauty
+BOOKING_TO_EMAIL=cassandra@ccandco.beauty
+TRADE_TO_EMAIL=cassandra@ccandco.beauty
+NEXT_PUBLIC_SITE_URL=https://ccandcoaesthetics.com
+GOOGLE_SITE_VERIFICATION=*** (configured)
 NEXT_PUBLIC_BOOKING_URL=
-NEXT_PUBLIC_INSTAGRAM_HANDLE=ccandco.aesthetics
-NEXT_PUBLIC_GOOGLE_MAPS_EMBED_URL=
+NEXT_PUBLIC_GOOGLE_MAPS_EMBED_URL=*** (live Google Maps embed configured)
+NEXT_PUBLIC_POSTHOG_KEY=*** (configured)
+NEXT_PUBLIC_POSTHOG_HOST=https://us.i.posthog.com
+NEXT_PUBLIC_POSTHOG_DEV_ENABLED=false
+INSTAGRAM_HIGHLIGHTS_API_URL=
+INSTAGRAM_HIGHLIGHTS_API_KEY=
+INSTAGRAM_HIGHLIGHTS_API_KEY_HEADER=Authorization
 ```
 
-Do not expose `RESEND_API_KEY` or recipient emails to the frontend. Only variables prefixed with `NEXT_PUBLIC_` are browser-visible.
+Do not expose `RESEND_API_KEY` or recipient emails to the frontend. Only variables prefixed with `NEXT_PUBLIC_` are browser-visible. `GOOGLE_SITE_VERIFICATION` is rendered as the Google Search Console verification meta tag when present.
 
-## Resend Setup
+## Email (Resend)
 
-1. Create a Resend account and verify a sending domain.
-2. Add the API key to `RESEND_API_KEY`.
-3. Set `CONTACT_TO_EMAIL`, `BOOKING_TO_EMAIL` and `TRADE_TO_EMAIL`.
-4. Update the `fromEmail` value in `lib/email.ts` after a verified domain is available. The current value uses Resend's onboarding sender for development.
+**Configured and active.** Contact, booking, and trade forms send real emails using Resend (set on Vercel production/preview and in `.env.local`).
+
+The sender uses the verified Resend domain `ccandco.beauty` via `RESEND_FROM_EMAIL`.
 
 The API routes are:
 
@@ -54,6 +60,12 @@ The API routes are:
 - `/api/trade`
 
 Each route validates with Zod, includes a honeypot field and returns explicit success or error messages.
+
+## Analytics (PostHog)
+
+PostHog is initialized through `instrumentation-client.ts` using `NEXT_PUBLIC_POSTHOG_KEY` and the US PostHog host. `next.config.ts` proxies `/ingest` requests to PostHog so pageview and session analytics are less likely to be blocked by browser extensions.
+
+PostHog is disabled by default in local development to keep invalid or placeholder keys from creating noisy 401s in the browser console. Set `NEXT_PUBLIC_POSTHOG_DEV_ENABLED=true` in `.env.local` only when intentionally testing analytics against a valid PostHog project key.
 
 ## Updating Content
 
@@ -74,6 +86,11 @@ Existing CC & CO. assets were copied to `public/images/` with stable names:
 - `aftercare-reference.jpg`
 - `booking-reference.jpg`
 - `policy-reference.jpg`
+- `cc-and-co-lash-treatment-editorial.jpg`
+- `cc-and-co-studio-experience.jpg`
+- `cc-and-co-hero-video-poster.jpg`
+
+The homepage hero also uses `public/videos/cc-and-co-hero-video.mp4`.
 
 Replace these files with final studio photography when available, keeping the same filenames to avoid code changes. Use descriptive alt text in `lib/services.ts` and page components if the image content changes.
 
@@ -87,14 +104,14 @@ Set `NEXT_PUBLIC_GOOGLE_MAPS_EMBED_URL` to the Google Maps embed URL for the stu
 
 ## Instagram Feed
 
-The homepage uses a polished fallback image grid and links to `@ccandco.aesthetics`. To replace this with a live feed, add a server-side Instagram integration and store any API token in a non-public environment variable.
+The homepage uses an interactive fallback highlight grid and links to `@ccandcoaesthetics`. Configure a third-party highlights provider with `INSTAGRAM_HIGHLIGHTS_API_URL` and `INSTAGRAM_HIGHLIGHTS_API_KEY` to play live highlight media through `/api/instagram/highlights`. Keep provider tokens private; only `NEXT_PUBLIC_INSTAGRAM_HANDLE` is browser-visible.
 
 ## Vercel Deployment
 
 1. Push the repository to GitHub.
 2. Import the project in Vercel.
 3. Add all environment variables in Vercel Project Settings.
-4. Set `NEXT_PUBLIC_SITE_URL` to the production domain.
+4. Set `NEXT_PUBLIC_SITE_URL` to `https://ccandcoaesthetics.com`.
 5. Deploy.
 
 Recommended production checks:
@@ -107,4 +124,12 @@ npm run build
 
 ## SEO
 
-The site includes page metadata, Open Graph, Twitter card metadata, `/sitemap.xml`, `/robots.txt` and `BeautySalon` / `LocalBusiness` JSON-LD. Local SEO keywords are configured in `lib/site.ts`.
+The site includes page metadata, Open Graph, Twitter card metadata, `/sitemap.xml`, `/robots.txt`, `/llms.txt`, and `BeautySalon` / `LocalBusiness` / `Service` / `FAQPage` JSON-LD. Local SEO keywords and canonical domain settings are configured in `lib/site.ts`.
+
+Google Search Console setup after production deploy:
+
+1. Add the domain property for `ccandcoaesthetics.com` in Google Search Console.
+2. Prefer DNS verification if you control DNS. If using HTML meta verification, set `GOOGLE_SITE_VERIFICATION` to the token Google provides and redeploy.
+3. Submit `https://ccandcoaesthetics.com/sitemap.xml` in Search Console.
+4. Test rich results for key pages with <https://search.google.com/test/rich-results>.
+5. Confirm these URLs return `200`: `/robots.txt`, `/sitemap.xml`, `/llms.txt`, `/services`, `/book`, `/contact`.

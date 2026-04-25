@@ -1,0 +1,197 @@
+meta:
+  version: "1.0.0"
+  generated_at: "2026-04-26"
+  owner: "CC & CO."
+  product: "CC & CO. Website"
+  platform: "web"
+  framework: "nextjs-app-router"
+  language: "typescript"
+  destinations:
+    - posthog
+  current_state_source: ".telemetry/current-state.yaml"
+  privacy_policy:
+    pii_in_event_properties: "forbidden"
+    free_text_capture: "forbidden"
+    allowed_form_fields:
+      - source
+      - preferred_service_slug
+      - client_type
+      - enquiry_type
+      - has_preferred_date
+      - has_preferred_time
+    disallowed_form_fields:
+      - name
+      - fullName
+      - email
+      - phone
+      - notes
+      - message
+      - businessName
+
+entities:
+  visitor:
+    id_strategy: "posthog_anonymous_distinct_id"
+    traits: []
+    notes: "Anonymous public website visitors. Do not identify until a durable customer account system exists."
+
+groups: []
+
+events:
+  - name: "booking_request.submitted"
+    display_name: "Booking Request Submitted"
+    description: "A visitor successfully submitted the booking request form."
+    owner: "marketing"
+    priority: "p0"
+    source: "components/BookingForm.tsx"
+    trigger: "after /api/booking returns ok"
+    actor: "visitor"
+    group_level: "none"
+    destination: "posthog"
+    implementation_status: "implemented"
+    properties:
+      preferred_service_slug:
+        type: "string"
+        required: false
+        description: "Service slug selected in the form, if provided."
+      client_type:
+        type: "enum"
+        required: false
+        values:
+          - "New client"
+          - "Returning client"
+        description: "Client type selected by the visitor."
+      has_preferred_date:
+        type: "boolean"
+        required: true
+        description: "Whether the visitor provided a preferred date."
+      has_preferred_time:
+        type: "boolean"
+        required: true
+        description: "Whether the visitor provided a preferred time."
+      source:
+        type: "string"
+        required: true
+        description: "Form source label."
+
+  - name: "contact_form.submitted"
+    display_name: "Contact Form Submitted"
+    description: "A visitor successfully submitted the general contact form."
+    owner: "marketing"
+    priority: "p0"
+    source: "components/ContactForm.tsx"
+    trigger: "after /api/contact returns ok"
+    actor: "visitor"
+    group_level: "none"
+    destination: "posthog"
+    implementation_status: "implemented"
+    properties:
+      source:
+        type: "string"
+        required: true
+        description: "Form source label."
+
+  - name: "trade_enquiry.submitted"
+    display_name: "Trade Enquiry Submitted"
+    description: "A visitor successfully submitted the trade enquiry form."
+    owner: "marketing"
+    priority: "p1"
+    source: "components/TradeForm.tsx"
+    trigger: "after /api/trade returns ok"
+    actor: "visitor"
+    group_level: "none"
+    destination: "posthog"
+    implementation_status: "implemented"
+    properties:
+      enquiry_type:
+        type: "string"
+        required: false
+        description: "Selected enquiry type. Does not include free-text content."
+      source:
+        type: "string"
+        required: true
+        description: "Form source label."
+
+  - name: "instagram_highlight.opened"
+    display_name: "Instagram Highlight Opened"
+    description: "A visitor opened an Instagram highlight modal."
+    owner: "marketing"
+    priority: "p1"
+    source: "components/InstagramHighlights.tsx"
+    trigger: "highlight card click"
+    actor: "visitor"
+    group_level: "none"
+    destination: "posthog"
+    implementation_status: "implemented"
+    properties:
+      highlight_id:
+        type: "string"
+        required: true
+        description: "Static fallback card ID."
+      highlight_title:
+        type: "string"
+        required: true
+        description: "Visible highlight title."
+      provider_configured:
+        type: "boolean"
+        required: true
+        description: "Whether live provider data had already been loaded when opened."
+
+  - name: "external_booking_link.clicked"
+    display_name: "External Booking Link Clicked"
+    description: "A visitor clicked the external instant booking link when configured."
+    owner: "marketing"
+    priority: "p2"
+    source: "app/book/page.tsx"
+    trigger: "Book Instantly CTA click"
+    actor: "visitor"
+    group_level: "none"
+    destination: "posthog"
+    implementation_status: "planned"
+    properties:
+      source:
+        type: "string"
+        required: true
+        description: "CTA location."
+
+  - name: "service_booking_cta.clicked"
+    display_name: "Service Booking CTA Clicked"
+    description: "A visitor clicked Book Now from a service detail page."
+    owner: "marketing"
+    priority: "p2"
+    source: "app/services/[slug]/page.tsx"
+    trigger: "service detail Book Now CTA click"
+    actor: "visitor"
+    group_level: "none"
+    destination: "posthog"
+    implementation_status: "planned"
+    properties:
+      service_slug:
+        type: "string"
+        required: true
+        description: "Service slug for the detail page."
+
+event_naming:
+  pattern: "object.action"
+  examples:
+    - "booking_request.submitted"
+    - "contact_form.submitted"
+    - "instagram_highlight.opened"
+
+rollout:
+  phase_1:
+    status: "implemented"
+    events:
+      - "booking_request.submitted"
+      - "contact_form.submitted"
+      - "trade_enquiry.submitted"
+      - "instagram_highlight.opened"
+  phase_2:
+    status: "planned"
+    events:
+      - "external_booking_link.clicked"
+      - "service_booking_cta.clicked"
+
+verification:
+  primary_dashboard: "PostHog Activity / Live Events"
+  expected_latency: "seconds"
+  local_behavior: "Disabled in local development by default; enable only with NEXT_PUBLIC_POSTHOG_DEV_ENABLED=true and a valid NEXT_PUBLIC_POSTHOG_KEY."

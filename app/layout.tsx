@@ -24,6 +24,11 @@ export const metadata: Metadata = {
     title: `${siteConfig.name} | Boutique Beauty Studio Elwood`,
     description: siteConfig.description,
   }),
+  verification: siteConfig.googleSiteVerification
+    ? {
+        google: siteConfig.googleSiteVerification,
+      }
+    : undefined,
 };
 
 export default function RootLayout({

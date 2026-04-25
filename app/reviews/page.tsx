@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CTASection } from "@/components/CTASection";
+import { FadeIn } from "@/components/Motion";
 import { SectionHeading } from "@/components/SectionHeading";
 import { TestimonialCard } from "@/components/TestimonialCard";
 import { ButtonLink } from "@/components/ui/button";
@@ -19,11 +20,15 @@ export default function ReviewsPage() {
     <>
       <section className="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
         <div className="mx-auto max-w-7xl">
-          <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+          <FadeIn
+            className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end"
+            variant="subtle"
+          >
             <SectionHeading
               eyebrow="Reviews"
               title="Client words that mean everything."
               description="A growing collection of testimonials from clients who trust CC & CO. with their lashes, smiles and beauty routine."
+              as="h1"
             />
             <div className="flex flex-col gap-3 sm:flex-row">
               <ButtonLink href={getInstagramUrl()} target="_blank" variant="outline">
@@ -31,11 +36,13 @@ export default function ReviewsPage() {
               </ButtonLink>
               <ButtonLink href="/book">Book Now</ButtonLink>
             </div>
-          </div>
+          </FadeIn>
 
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {testimonials.map((testimonial) => (
-              <TestimonialCard key={testimonial.name} testimonial={testimonial} />
+            {testimonials.map((testimonial, index) => (
+              <FadeIn key={testimonial.name} delay={index * 0.04} variant="subtle">
+                <TestimonialCard testimonial={testimonial} />
+              </FadeIn>
             ))}
           </div>
         </div>

@@ -13,7 +13,9 @@ type SendStudioEmailOptions = {
   fields: EmailField[];
 };
 
-const fromEmail = "CC & CO. Website <onboarding@resend.dev>";
+const fromEmail =
+  process.env.RESEND_FROM_EMAIL ||
+  "CC & CO. Website <cassandra@ccandco.beauty>";
 
 function escapeHtml(value: string) {
   return value

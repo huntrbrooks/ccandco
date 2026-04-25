@@ -85,8 +85,8 @@ export const services: Service[] = [
       "Hybrid lashes combine natural definition with airy volume to create a fuller, textured result while remaining wearable.",
     duration: "1.5-2.5 hours",
     startingPrice: "$110",
-    image: "/images/logo-reference.jpg",
-    imageAlt: "CC & CO. aesthetics brand mark.",
+    image: "/images/hybrid-lash-extensions-treatment.png",
+    imageAlt: "Hybrid lash extension treatment at CC & CO.",
     benefits: [
       "Custom balance of definition and fullness",
       "Soft textured finish",

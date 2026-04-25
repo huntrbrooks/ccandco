@@ -99,4 +99,9 @@ select {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
   }
+
+  [data-motion="fade-in"] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

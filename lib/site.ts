@@ -4,12 +4,17 @@ export const siteConfig = {
   headline: "BEAUTY THAT INSPIRES CONFIDENCE",
   description:
     "Premium boutique beauty studio in Elwood, Melbourne, offering bespoke eyelash extensions, professional teeth whitening, and tailored beauty services.",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.ccandco.com.au",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://ccandcoaesthetics.com",
+  lastUpdated: "2026-04-26",
+  googleSiteVerification:
+    process.env.GOOGLE_SITE_VERIFICATION ||
+    process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ||
+    "",
   instagramHandle:
-    process.env.NEXT_PUBLIC_INSTAGRAM_HANDLE || "ccandco.aesthetics",
+    process.env.NEXT_PUBLIC_INSTAGRAM_HANDLE || "ccandcoaesthetics",
   bookingUrl: process.env.NEXT_PUBLIC_BOOKING_URL || "",
   googleMapsEmbedUrl: process.env.NEXT_PUBLIC_GOOGLE_MAPS_EMBED_URL || "",
-  studioEmail: "hello@ccandco.com.au",
+  studioEmail: "cassandra@ccandco.beauty",
   phone: "+61 400 000 000",
   address: {
     street: "123 Beauty Lane",
