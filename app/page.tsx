@@ -24,7 +24,7 @@ export default function HomePage() {
           <FadeIn>
             <div className="overflow-hidden rounded-[2.5rem] border border-white/70 shadow-2xl">
               <Image
-                src="/images/Lashes 1.png"
+                src="/images/cc-and-co-lash-treatment-editorial.jpg"
                 alt="CC & CO. lash treatment in a calm boutique beauty studio"
                 width={720}
                 height={960}
@@ -108,8 +108,8 @@ export default function HomePage() {
             <FadeIn delay={0.08} variant="subtle">
               <div className="overflow-hidden rounded-4xl border border-white/70 bg-card shadow-xl">
                 <Image
-                  src="/images/consultation .png"
-                  alt="A relaxed CC & CO. boutique studio consultation setting"
+                  src="/images/cc-and-co-studio-experience.jpg"
+                  alt="A relaxed CC & CO. boutique studio treatment setting"
                   width={1024}
                   height={576}
                   className="aspect-video w-full object-cover"

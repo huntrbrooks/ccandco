@@ -83,16 +83,22 @@ Existing CC & CO. assets are stored in `public/images/`:
 
 - `Lashes 1.png`
 - `eyelashes.png`
+- `hybrid-lash-extensions-treatment.png`
+- `new1.png`
+- `new2.png`
+- `cc-and-co-lash-treatment-editorial.jpg`
+- `cc-and-co-studio-experience.jpg`
+- `cc-and-co-hero-video-poster.jpg`
 - `Brows and lashes.png`
 - `Brows.png`
-- `Teeth whitening.png`
+- `whitening.png`
 - `consultation .png`
 - `logo-reference.svg`
 - `prices.png`
 - `aftercare.png`
 - `Bookings.png`
 
-The homepage hero uses the uploaded lash treatment imagery.
+The homepage hero uses `public/videos/cc-and-co-hero-video.mp4` with `cc-and-co-hero-video-poster.jpg` as its poster.
 
 Replace these files with final studio photography when available, keeping the same filenames to avoid code changes. Use descriptive alt text in `lib/services.ts` and page components if the image content changes.
 

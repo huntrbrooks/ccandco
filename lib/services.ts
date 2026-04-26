@@ -85,8 +85,8 @@ export const services: Service[] = [
       "Hybrid lashes combine natural definition with airy volume to create a fuller, textured result while remaining wearable.",
     duration: "1.5-2.5 hours",
     startingPrice: "$110",
-    image: "/images/Lashes 1.png",
-    imageAlt: "Lash treatment being applied in a calm beauty studio.",
+    image: "/images/hybrid-lash-extensions-treatment.png",
+    imageAlt: "Hybrid lash extension treatment being applied in a calm beauty studio.",
     benefits: [
       "Custom balance of definition and fullness",
       "Soft textured finish",
@@ -169,8 +169,8 @@ export const services: Service[] = [
       "A lash lift and tint enhances your natural lashes by lifting, shaping and darkening them for a fresh, open-eyed finish.",
     duration: "40-60 minutes",
     startingPrice: "$70",
-    image: "/images/Lashes 1.png",
-    imageAlt: "Natural lash service in a soft studio treatment setting.",
+    image: "/images/new1.png",
+    imageAlt: "Lash lift and tint treatment being applied in a soft studio setting.",
     benefits: [
       "Enhances natural lashes",
       "No extension maintenance",
@@ -215,7 +215,7 @@ export const services: Service[] = [
       "Professional teeth whitening is designed to brighten your smile efficiently while keeping the experience relaxed and guided.",
     duration: "1.5 hours",
     startingPrice: "$300",
-    image: "/images/Teeth whitening.png",
+    image: "/images/whitening.png",
     imageAlt: "Professional teeth whitening treatment in a beauty studio.",
     benefits: [
       "Brighter smile",
@@ -303,8 +303,8 @@ export const services: Service[] = [
       "Brow tint adds natural-looking depth and definition, helping brows appear fuller and more polished.",
     duration: "20-30 minutes",
     startingPrice: "$30",
-    image: "/images/Brows and lashes.png",
-    imageAlt: "Close-up of shaped brows and lash styling.",
+    image: "/images/new2.png",
+    imageAlt: "Brow tint treatment being applied in a soft studio setting.",
     benefits: [
       "Soft natural definition",
       "Fuller-looking brows",
