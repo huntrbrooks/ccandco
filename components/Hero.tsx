@@ -34,13 +34,9 @@ export function Hero() {
               muted
               loop
               playsInline
-              poster="/images/cc-and-co-hero-video-poster.jpg"
               aria-label="CC & CO. premium aesthetics brand video"
             >
-              <source
-                src="/videos/cc-and-co-hero-video.mp4"
-                type="video/mp4"
-              />
+              <source src="/videos/cc%20and%20co.mp4" type="video/mp4" />
             </video>
             <div className="absolute inset-x-5 bottom-5 rounded-3xl border border-white/45 bg-ivory/88 p-5 shadow-xl backdrop-blur">
               <p className="text-xs font-bold uppercase tracking-[0.25em] text-taupe">
