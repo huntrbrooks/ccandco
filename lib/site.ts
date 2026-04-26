@@ -15,7 +15,7 @@ export const siteConfig = {
   bookingUrl: process.env.NEXT_PUBLIC_BOOKING_URL || "",
   googleMapsEmbedUrl: process.env.NEXT_PUBLIC_GOOGLE_MAPS_EMBED_URL || "",
   studioEmail: "cassandra@ccandco.beauty",
-  phone: "+61 400 000 000",
+  phone: "0451 444 250",
   address: {
     street: "123 Beauty Lane",
     suburb: "Elwood",
