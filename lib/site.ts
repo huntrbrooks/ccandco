@@ -15,12 +15,11 @@ export const siteConfig = {
   bookingUrl: process.env.NEXT_PUBLIC_BOOKING_URL || "",
   googleMapsEmbedUrl: process.env.NEXT_PUBLIC_GOOGLE_MAPS_EMBED_URL || "",
   studioEmail: "cassandra@ccandco.beauty",
-  phone: "0451 444 250",
+  phone: "+61 451 444 250",
   address: {
-    street: "123 Beauty Lane",
+    street: "146 Glen Huntly Road",
     suburb: "Elwood",
-    city: "Melbourne",
-    region: "VIC",
+    region: "Victoria",
     country: "AU",
     postcode: "3184",
   },
@@ -100,8 +99,8 @@ export const footerLinks = [
 ];
 
 export function getAddressLine() {
-  const { street, suburb, city } = siteConfig.address;
-  return `${street}, ${suburb}, ${city}`;
+  const { street, suburb, postcode, region } = siteConfig.address;
+  return `${street}, ${suburb} ${postcode}, ${region}`;
 }
 
 export function getInstagramUrl() {

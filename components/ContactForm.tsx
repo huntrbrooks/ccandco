@@ -87,7 +87,7 @@ export function ContactForm() {
         <Input
           id="contact-phone"
           autoComplete="tel"
-          placeholder="0400 000 000"
+          placeholder="+61 451 444 250"
           {...register("phone")}
         />
         <FieldError message={errors.phone?.message} />
