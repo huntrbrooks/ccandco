@@ -15,19 +15,19 @@ const instagramHighlights: InstagramHighlightCard[] = [
   {
     id: "prices",
     title: "Prices",
-    src: "/images/prices-circle-reference.svg",
+    src: "/images/prices.png",
     alt: "CC & CO. price highlight graphic",
   },
   {
     id: "aftercare",
     title: "Aftercare",
-    src: "/images/aftercare-circle-reference.svg",
+    src: "/images/aftercare.png",
     alt: "CC & CO. aftercare highlight graphic",
   },
   {
     id: "booking",
     title: "Booking",
-    src: "/images/booking-circle-reference.svg",
+    src: "/images/Bookings.png",
     alt: "CC & CO. booking highlight graphic",
   },
 ];

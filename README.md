@@ -88,11 +88,11 @@ Existing CC & CO. assets are stored in `public/images/`:
 - `Teeth whitening.png`
 - `consultation .png`
 - `logo-reference.svg`
-- `prices-circle-reference.svg`
-- `aftercare-circle-reference.svg`
-- `booking-circle-reference.svg`
+- `prices.png`
+- `aftercare.png`
+- `Bookings.png`
 
-The homepage hero can also use `public/videos/cc-and-co-hero-video.mp4` when a studio video is available.
+The homepage hero uses the uploaded lash treatment imagery.
 
 Replace these files with final studio photography when available, keeping the same filenames to avoid code changes. Use descriptive alt text in `lib/services.ts` and page components if the image content changes.
 
