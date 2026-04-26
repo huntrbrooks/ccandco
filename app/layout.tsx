@@ -24,6 +24,10 @@ export const metadata: Metadata = {
     title: `${siteConfig.name} | Boutique Beauty Studio Elwood`,
     description: siteConfig.description,
   }),
+  icons: {
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    shortcut: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+  },
   verification: siteConfig.googleSiteVerification
     ? {
         google: siteConfig.googleSiteVerification,
