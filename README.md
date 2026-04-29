@@ -101,7 +101,7 @@ Existing CC & CO. assets are stored in `public/images/`:
 - `aftercare.png`
 - `Bookings.png`
 
-The homepage hero uses `public/videos/cc-and-co-hero-atmosphere.mp4` with `public/images/cc-and-co-hero-video-poster.jpg` as its poster. Visitors who prefer reduced motion see the poster image instead of an autoplaying video.
+The homepage hero uses `public/videos/cc and co.mp4` with `public/images/cc-and-co-hero-video-poster.jpg` as its poster. Visitors who prefer reduced motion see the poster image instead of an autoplaying video.
 
 Replace these files with final studio photography when available, keeping the same filenames to avoid code changes. Use descriptive alt text in `lib/services.ts` and page components if the image content changes.
 

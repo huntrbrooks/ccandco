@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
-const HERO_VIDEO_SRC = "/videos/cc-and-co-hero-atmosphere.mp4";
+const HERO_VIDEO_SRC = "/videos/cc and co.mp4";
 const HERO_POSTER_SRC = "/images/cc-and-co-hero-video-poster.jpg";
 
 export function HeroVideo() {
