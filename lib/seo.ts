@@ -62,7 +62,6 @@ export function createMetadata({
 }
 
 export function createBeautySalonJsonLd() {
-  const address = siteConfig.address;
   const businessId = new URL("/#local-business", siteConfig.url).toString();
   const websiteId = new URL("/#website", siteConfig.url).toString();
   const imageUrl = new URL("/og-image.svg", siteConfig.url).toString();
@@ -82,15 +81,7 @@ export function createBeautySalonJsonLd() {
         telephone: siteConfig.phone,
         priceRange: "$$",
         sameAs: [getInstagramUrl()],
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: address.street,
-          addressLocality: address.suburb,
-          addressRegion: address.region,
-          postalCode: address.postcode,
-          addressCountry: address.country,
-        },
-        areaServed: ["Elwood", "Melbourne", "Bayside Melbourne"],
+        areaServed: [siteConfig.publicLocation, "Elwood", "Bayside Melbourne"],
         openingHoursSpecification: [
           {
             "@type": "OpeningHoursSpecification",
@@ -157,7 +148,7 @@ export function createServicePageJsonLd(service: Service) {
   };
 }
 
-export const localBusinessSummary = `${siteConfig.name} is located at ${getAddressLine()}, offering ${services
+export const localBusinessSummary = `${siteConfig.name} serves the ${getAddressLine()}, offering ${services
   .slice(0, 3)
   .map((service) => service.name.toLowerCase())
   .join(", ")} and more.`;
@@ -184,7 +175,7 @@ function createServiceGraph(service: Service) {
     description: service.description,
     serviceType: service.category,
     image: new URL("/og-image.svg", siteConfig.url).toString(),
-    areaServed: ["Elwood", "Melbourne", "Bayside Melbourne"],
+    areaServed: [siteConfig.publicLocation, "Elwood", "Bayside Melbourne"],
     provider: {
       "@id": new URL("/#local-business", siteConfig.url).toString(),
     },

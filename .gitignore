@@ -14,12 +14,18 @@
 tsconfig.tsbuildinfo
 /MD Files/
 /*.jpg
+/public/videos/Hero video
+/CC AUTO INSTAGRAM/*.mp4
+/CC AUTO INSTAGRAM/*.m4a
+/CC AUTO INSTAGRAM/*.pdf
+/CC AUTO INSTAGRAM/*.png
 
 # debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+.firecrawl/
 
 # env files
 .env

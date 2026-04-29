@@ -44,6 +44,9 @@ export default function RootLayout({
   return (
     <html lang="en-AU" className={`${inter.variable} ${cormorant.variable}`}>
       <body className="flex min-h-screen flex-col">
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
         <script
           type="application/ld+json"
           suppressHydrationWarning
@@ -52,7 +55,9 @@ export default function RootLayout({
           }}
         />
         <Header />
-        <main className="flex-1">{children}</main>
+        <main id="main-content" className="flex-1" tabIndex={-1}>
+          {children}
+        </main>
         <Footer />
         <MusicToggle />
       </body>

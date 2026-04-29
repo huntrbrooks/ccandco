@@ -1,7 +1,8 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { useSyncExternalStore } from "react";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 type MotionProps = {
   children: React.ReactNode;
@@ -26,7 +27,7 @@ export function FadeIn({
   variant = "default",
 }: MotionProps) {
   const settings = fadeInVariants[variant];
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = usePrefersReducedMotion();
   const hasHydrated = useSyncExternalStore(
     subscribeToHydration,
     getHydratedSnapshot,

@@ -1,11 +1,24 @@
 import { NextResponse } from "next/server";
 import { getServiceBySlug } from "@/lib/services";
 import { sendStudioEmail } from "@/lib/email";
+import { readJsonRequest } from "@/lib/request-guards";
 import { bookingSchema } from "@/lib/validations";
 
+const MAX_BOOKING_REQUEST_BYTES = 12_000;
+
 export async function POST(request: Request) {
-  const body = await request.json().catch(() => null);
-  const result = bookingSchema.safeParse(body);
+  const requestBody = await readJsonRequest(request, {
+    maxBytes: MAX_BOOKING_REQUEST_BYTES,
+  });
+
+  if (!requestBody.ok) {
+    return NextResponse.json(
+      { message: requestBody.message },
+      { status: requestBody.status },
+    );
+  }
+
+  const result = bookingSchema.safeParse(requestBody.body);
 
   if (!result.success) {
     return NextResponse.json(

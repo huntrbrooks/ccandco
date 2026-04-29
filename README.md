@@ -38,11 +38,14 @@ GOOGLE_SITE_VERIFICATION=*** (configured)
 NEXT_PUBLIC_BOOKING_URL=
 NEXT_PUBLIC_GOOGLE_MAPS_EMBED_URL=*** (live Google Maps embed configured)
 NEXT_PUBLIC_POSTHOG_KEY=*** (configured)
-NEXT_PUBLIC_POSTHOG_HOST=https://us.i.posthog.com
+NEXT_PUBLIC_POSTHOG_HOST=
 NEXT_PUBLIC_POSTHOG_DEV_ENABLED=false
 INSTAGRAM_HIGHLIGHTS_API_URL=
 INSTAGRAM_HIGHLIGHTS_API_KEY=
 INSTAGRAM_HIGHLIGHTS_API_KEY_HEADER=Authorization
+N8N_CONTENT_WEBHOOK_URL=
+N8N_CONTENT_WEBHOOK_SECRET=
+CONTENT_APPROVAL_BASE_URL=
 ```
 
 Do not expose `RESEND_API_KEY` or recipient emails to the frontend. Only variables prefixed with `NEXT_PUBLIC_` are browser-visible. `GOOGLE_SITE_VERIFICATION` is rendered as the Google Search Console verification meta tag when present.
@@ -63,7 +66,7 @@ Each route validates with Zod, includes a honeypot field and returns explicit su
 
 ## Analytics (PostHog)
 
-PostHog is initialized through `instrumentation-client.ts` using `NEXT_PUBLIC_POSTHOG_KEY` and the US PostHog host. `next.config.ts` proxies `/ingest` requests to PostHog so pageview and session analytics are less likely to be blocked by browser extensions.
+PostHog is initialized through `instrumentation-client.ts` using `NEXT_PUBLIC_POSTHOG_KEY`. By default the client sends to the local `/ingest` proxy defined in `next.config.ts`, which forwards to the US PostHog ingest host so pageview and session analytics are less likely to be blocked by browser extensions. Set `NEXT_PUBLIC_POSTHOG_HOST` only if you intentionally want to bypass the proxy or use another PostHog ingest region.
 
 PostHog is disabled by default in local development to keep invalid or placeholder keys from creating noisy 401s in the browser console. Set `NEXT_PUBLIC_POSTHOG_DEV_ENABLED=true` in `.env.local` only when intentionally testing analytics against a valid PostHog project key.
 
@@ -98,7 +101,7 @@ Existing CC & CO. assets are stored in `public/images/`:
 - `aftercare.png`
 - `Bookings.png`
 
-The homepage hero uses `public/videos/cc-and-co-hero-video.mp4` with `cc-and-co-hero-video-poster.jpg` as its poster.
+The homepage hero uses `public/videos/cc-and-co-hero-atmosphere.mp4` with `public/images/cc-and-co-hero-video-poster.jpg` as its poster. Visitors who prefer reduced motion see the poster image instead of an autoplaying video.
 
 Replace these files with final studio photography when available, keeping the same filenames to avoid code changes. Use descriptive alt text in `lib/services.ts` and page components if the image content changes.
 
@@ -108,11 +111,17 @@ Set `NEXT_PUBLIC_BOOKING_URL` to a third-party booking URL to show the “Book I
 
 ## Google Maps
 
-Set `NEXT_PUBLIC_GOOGLE_MAPS_EMBED_URL` to the Google Maps embed URL for the studio. Until configured, the site displays a designed placeholder.
+The website now publishes the service area as Bayside Area and does not display a street address or map directions.
 
 ## Instagram Feed
 
 The homepage uses an interactive fallback highlight grid and links to `@ccandcoaesthetics`. Configure a third-party highlights provider with `INSTAGRAM_HIGHLIGHTS_API_URL` and `INSTAGRAM_HIGHLIGHTS_API_KEY` to play live highlight media through `/api/instagram/highlights`. Keep provider tokens private; only `NEXT_PUBLIC_INSTAGRAM_HANDLE` is browser-visible.
+
+## Content Automation
+
+Credential-free automation schemas live in `lib/content-automation.ts`. They define the approval-first content calendar, approved asset, approved testimonial and n8n webhook payload contracts. The operating notes and integration field map live in `docs/content-automation.md`.
+
+Automation integrations are intentionally disabled until external systems are chosen and configured. Use the `N8N_*`, Airtable, Notion, Meta and Google Business Profile variables in `.env.example` as placeholders for the future content machine. Do not enable automatic publishing without an explicit owner approval workflow.
 
 ## Vercel Deployment
 

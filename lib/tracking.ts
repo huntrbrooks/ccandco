@@ -1,4 +1,5 @@
 import posthog from "posthog-js";
+import { getPostHogClientConfig } from "@/lib/integration-config";
 
 export const EVENTS = {
   BOOKING_REQUEST_SUBMITTED: "booking_request.submitted",
@@ -14,8 +15,7 @@ type EventProperties = Record<string, string | number | boolean | undefined>;
 const isDevelopment = process.env.NODE_ENV === "development";
 const isPostHogDevEnabled = process.env.NEXT_PUBLIC_POSTHOG_DEV_ENABLED === "true";
 const isPostHogEnabled =
-  Boolean(process.env.NEXT_PUBLIC_POSTHOG_KEY) &&
-  (!isDevelopment || isPostHogDevEnabled);
+  Boolean(getPostHogClientConfig()) && (!isDevelopment || isPostHogDevEnabled);
 
 export type BookingRequestSubmittedProperties = {
   preferred_service_slug?: string;

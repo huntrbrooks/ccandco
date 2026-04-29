@@ -1,15 +1,16 @@
 import posthog from "posthog-js";
+import { getPostHogClientConfig } from "@/lib/integration-config";
 
-const posthogKey = process.env.NEXT_PUBLIC_POSTHOG_KEY;
+const posthogConfig = getPostHogClientConfig();
 const isDevelopment = process.env.NODE_ENV === "development";
 const isPostHogDevEnabled = process.env.NEXT_PUBLIC_POSTHOG_DEV_ENABLED === "true";
 const shouldInitPostHog =
-  Boolean(posthogKey) && (!isDevelopment || isPostHogDevEnabled);
+  Boolean(posthogConfig) && (!isDevelopment || isPostHogDevEnabled);
 
-if (posthogKey && shouldInitPostHog) {
-  posthog.init(posthogKey, {
-    api_host: "/ingest",
-    ui_host: "https://us.posthog.com",
+if (posthogConfig && shouldInitPostHog) {
+  posthog.init(posthogConfig.key, {
+    api_host: posthogConfig.apiHost,
+    ui_host: posthogConfig.uiHost,
     defaults: "2026-01-30",
     capture_exceptions: true,
     debug: isDevelopment && isPostHogDevEnabled,

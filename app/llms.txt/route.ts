@@ -32,7 +32,7 @@ ${siteConfig.description}
 
 - Official website: ${siteConfig.url}
 - Business name: ${siteConfig.legalName}
-- Location: ${getAddressLine()}, ${siteConfig.address.country}
+- Service area: ${getAddressLine()}
 - Instagram: ${getInstagramUrl()}
 - Email: ${siteConfig.studioEmail}
 - Phone: ${siteConfig.phone}

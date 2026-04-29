@@ -1,6 +1,5 @@
-import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import test from "node:test";
+import { expect, test } from "vitest";
 
 test("root layout uses a sticky-footer column structure", () => {
   const layout = readFileSync(new URL("../app/layout.tsx", import.meta.url), "utf8");
@@ -8,8 +7,8 @@ test("root layout uses a sticky-footer column structure", () => {
   const bodyClassName = layout.match(/<body[^>]+className=["']([^"']+)["']/)?.[1] ?? "";
   const mainClassName = layout.match(/<main[^>]+className=["']([^"']+)["']/)?.[1] ?? "";
 
-  assert.ok(bodyClassName.split(/\s+/).includes("min-h-screen"));
-  assert.ok(bodyClassName.split(/\s+/).includes("flex"));
-  assert.ok(bodyClassName.split(/\s+/).includes("flex-col"));
-  assert.ok(mainClassName.split(/\s+/).includes("flex-1"));
+  expect(bodyClassName.split(/\s+/)).toContain("min-h-screen");
+  expect(bodyClassName.split(/\s+/)).toContain("flex");
+  expect(bodyClassName.split(/\s+/)).toContain("flex-col");
+  expect(mainClassName.split(/\s+/)).toContain("flex-1");
 });

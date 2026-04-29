@@ -12,6 +12,9 @@ export function Header() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
+  const primaryNavigation = siteConfig.navigation.filter(
+    (item) => item.href !== "/book",
+  );
 
   useEffect(() => {
     function updateHeaderDepth() {
@@ -26,8 +29,17 @@ export function Header() {
 
   return (
     <>
-      <div className="bg-charcoal px-4 py-2 text-center text-xs font-semibold uppercase tracking-[0.2em] text-cream">
+      <div
+        className="bg-charcoal px-4 py-2 text-center text-xs font-semibold uppercase tracking-[0.2em] text-cream"
+        role="note"
+      >
         {siteConfig.announcement}
+      </div>
+      <div
+        className="bg-primary px-4 py-2 text-center text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground"
+        role="note"
+      >
+        {siteConfig.serviceBanner}
       </div>
       <header
         className={cn(
@@ -51,7 +63,7 @@ export function Header() {
 
           <nav aria-label="Primary navigation" className="hidden lg:block">
             <ul className="flex items-center gap-8">
-              {siteConfig.navigation.slice(0, 3).map((item) => (
+              {primaryNavigation.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
@@ -77,7 +89,7 @@ export function Header() {
             type="button"
             className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card text-charcoal lg:hidden"
             aria-label={isOpen ? "Close menu" : "Open menu"}
-            aria-expanded={isOpen ? "true" : "false"}
+            aria-expanded={isOpen}
             onClick={() => setIsOpen((value) => !value)}
           >
             {isOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}

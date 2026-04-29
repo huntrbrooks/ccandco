@@ -48,7 +48,7 @@ export function Footer() {
 
         <div>
           <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-champagne">
-            Visit
+            Service Area
           </h2>
           <p className="mt-5 text-sm leading-7 text-cream/75">
             {getAddressLine()}

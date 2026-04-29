@@ -4,6 +4,8 @@ import { Card } from "@/components/ui/card";
 import { getAddressLine, siteConfig } from "@/lib/site";
 
 export function LocationHours() {
+  const addressLine = getAddressLine();
+
   return (
     <section className="px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr]">
@@ -12,10 +14,10 @@ export function LocationHours() {
             <MapPin aria-hidden="true" />
           </div>
           <h2 className="mt-6 font-serif text-4xl font-semibold text-charcoal">
-            Visit our Elwood studio
+            Serving the Bayside Area
           </h2>
           <p className="mt-4 text-base leading-7 text-muted-foreground">
-            {getAddressLine()}
+            {addressLine}
           </p>
           <dl className="mt-8 space-y-3">
             {siteConfig.hours.map((item) => (
@@ -32,28 +34,19 @@ export function LocationHours() {
             Book Your Appointment
           </ButtonLink>
         </Card>
-        <Card className="min-h-[360px] overflow-hidden">
-          {siteConfig.googleMapsEmbedUrl ? (
-            <iframe
-              src={siteConfig.googleMapsEmbedUrl}
-              title="Google Maps location for CC & CO. in Elwood"
-              className="h-full min-h-[360px] w-full border-0"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-          ) : (
-            <div className="flex h-full min-h-[360px] items-center justify-center bg-[linear-gradient(135deg,#ead8ca,#fbf7f1)] p-8 text-center">
-              <div>
-                <p className="font-serif text-3xl text-charcoal">
-                  Google Maps placeholder
-                </p>
-                <p className="mt-3 max-w-md text-sm leading-7 text-muted-foreground">
-                  Add `NEXT_PUBLIC_GOOGLE_MAPS_EMBED_URL` to show the live map
-                  embed here.
-                </p>
-              </div>
-            </div>
-          )}
+        <Card className="flex min-h-[360px] items-center justify-center overflow-hidden bg-[linear-gradient(135deg,#ead8ca,#fbf7f1)] p-8 text-center">
+          <div>
+            <p className="font-serif text-3xl text-charcoal">
+              Mobile Services Available
+            </p>
+            <p className="mt-3 max-w-md text-sm leading-7 text-muted-foreground">
+              CC & CO. offers mobile beauty services across the Bayside Area,
+              with appointment details confirmed during booking.
+            </p>
+            <ButtonLink href="/book" variant="outline" className="mt-5">
+              Enquire About Mobile Services
+            </ButtonLink>
+          </div>
         </Card>
       </div>
     </section>

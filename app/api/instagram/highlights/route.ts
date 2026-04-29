@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { getInstagramHighlightsConfig } from "@/lib/integration-config";
 import { normalizeHighlightResponse } from "@/lib/instagram-highlights";
 import { siteConfig } from "@/lib/site";
 
@@ -11,10 +12,9 @@ export async function GET(request: Request) {
   const handle =
     requestUrl.searchParams.get("handle")?.replace(/^@/, "").trim() ||
     siteConfig.instagramHandle;
-  const providerUrl = process.env.INSTAGRAM_HIGHLIGHTS_API_URL;
-  const apiKey = process.env.INSTAGRAM_HIGHLIGHTS_API_KEY;
+  const config = getInstagramHighlightsConfig();
 
-  if (!providerUrl || !apiKey) {
+  if (!config) {
     return NextResponse.json({
       highlights: [],
       providerConfigured: false,
@@ -27,9 +27,9 @@ export async function GET(request: Request) {
   const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
 
   try {
-    const response = await fetch(buildProviderUrl(providerUrl, handle), {
+    const response = await fetch(buildProviderUrl(config.providerUrl, handle), {
       cache: "no-store",
-      headers: buildProviderHeaders(apiKey),
+      headers: buildProviderHeaders(config.apiKey, config.apiKeyHeader),
       signal: controller.signal,
     });
 
@@ -83,10 +83,7 @@ function buildProviderUrl(providerUrl: string, handle: string) {
   return url.toString();
 }
 
-function buildProviderHeaders(apiKey: string) {
-  const headerName =
-    process.env.INSTAGRAM_HIGHLIGHTS_API_KEY_HEADER || "Authorization";
-
+function buildProviderHeaders(apiKey: string, headerName: string) {
   if (headerName.toLowerCase() === "authorization") {
     return {
       Authorization: `Bearer ${apiKey}`,

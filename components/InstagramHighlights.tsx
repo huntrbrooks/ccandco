@@ -1,10 +1,11 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { ExternalLink, PlayCircle, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { ButtonLink } from "@/components/ui/button";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import type { InstagramHighlight } from "@/lib/instagram-highlights";
 import { trackInstagramHighlightOpened } from "@/lib/tracking";
 
@@ -36,7 +37,7 @@ export function InstagramHighlights({
   const [highlights, setHighlights] = useState<InstagramHighlight[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = usePrefersReducedMotion();
 
   const activeHighlight = useMemo(() => {
     if (!activeCard || !highlights) {

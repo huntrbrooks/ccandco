@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CheckCircle2 } from "lucide-react";
 import { BookingForm } from "@/components/BookingForm";
 import { LocationHours } from "@/components/LocationHours";
 import { SectionHeading } from "@/components/SectionHeading";
@@ -51,6 +52,22 @@ export default async function BookPage({ searchParams }: BookPageProps) {
                 </ButtonLink>
               </Card>
             ) : null}
+            <Card className="mt-6 p-6">
+              <h2 className="font-serif text-3xl text-charcoal">
+                Before you book
+              </h2>
+              <ul className="mt-4 space-y-3 text-sm leading-7 text-muted-foreground">
+                {siteConfig.policyHighlights.map((policy) => (
+                  <li key={policy} className="flex gap-3">
+                    <CheckCircle2
+                      className="mt-1 h-4 w-4 shrink-0 text-primary"
+                      aria-hidden="true"
+                    />
+                    <span>{policy}</span>
+                  </li>
+                ))}
+              </ul>
+            </Card>
           </div>
           <Card className="p-6 sm:p-8">
             <BookingForm defaultServiceSlug={service} />

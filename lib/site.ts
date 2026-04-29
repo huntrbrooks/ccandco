@@ -16,13 +16,8 @@ export const siteConfig = {
   googleMapsEmbedUrl: process.env.NEXT_PUBLIC_GOOGLE_MAPS_EMBED_URL || "",
   studioEmail: "cassandra@ccandco.beauty",
   phone: "+61 451 444 250",
-  address: {
-    street: "146 Glen Huntly Road",
-    suburb: "Elwood",
-    region: "Victoria",
-    country: "AU",
-    postcode: "3184",
-  },
+  publicLocation: "Bayside Area",
+  serviceBanner: "Mobile Services available across the Bayside Area",
   hours: [
     { label: "Mon-Fri", value: "9 AM - 6 PM" },
     { label: "Sat", value: "10 AM - 4 PM" },
@@ -30,6 +25,7 @@ export const siteConfig = {
   ],
   navigation: [
     { label: "Services", href: "/services" },
+    { label: "Reviews", href: "/reviews" },
     { label: "Trade", href: "/trade" },
     { label: "Contact Us", href: "/contact" },
     { label: "Book Now", href: "/book" },
@@ -99,8 +95,7 @@ export const footerLinks = [
 ];
 
 export function getAddressLine() {
-  const { street, suburb, postcode, region } = siteConfig.address;
-  return `${street}, ${suburb} ${postcode}, ${region}`;
+  return siteConfig.publicLocation;
 }
 
 export function getInstagramUrl() {
